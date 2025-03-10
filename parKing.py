@@ -6,22 +6,23 @@ import pytesseract
 # Set the path for Tesseract executable
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-# Load the image
-image = cv2.imread("images/Cars6.png")
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+image = cv2.imread("images/Cars6.png")            # Loads the image for folder
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)    #Converts the image to grayscale
 
-# Apply Gaussian Blur with a smaller kernel size
-blurred = cv2.GaussianBlur(gray, (3, 3), 0)  # Smaller kernel to reduce streaks
+# Smooths the image to remove noise using a small Gaussian blur
+blurred = cv2.GaussianBlur(gray, (3, 3), 0)      # Smaller kernel to reduce streaks
 
-# Edge detection using Canny with adjusted thresholds
-edges = cv2.Canny(blurred, 100, 200)  # Adjusted thresholds for better edge detection
+# Finds the edges in the image using the Canny edge detector
+edges = cv2.Canny(blurred, 100, 200)
 
-# Find contours
+# Finds all the shapes (contours) in the edge image
 contours, _ = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-# Draw all contours for debugging
+# Draws all contours on a copy of the original image (blue lines)
 contour_image = image.copy()
 cv2.drawContours(contour_image, contours, -1, (255, 0, 0), 2)
+
+# Displays the image with all detected contours
 plt.figure(figsize=(10, 6))
 plt.imshow(cv2.cvtColor(contour_image, cv2.COLOR_BGR2RGB))
 plt.title("Detected Contours")
@@ -30,38 +31,39 @@ plt.show()
 
 # Loop through contours and filter potential license plates
 for contour in contours:
-    approx = cv2.approxPolyDP(contour, 0.02 * cv2.arcLength(contour, True), True)
-    x, y, w, h = cv2.boundingRect(approx)
+    approx = cv2.approxPolyDP(contour, 0.02 * cv2.arcLength(contour, True), True)        # Makes each contour shape smoother using polygon approximation
+    x, y, w, h = cv2.boundingRect(approx)        # Gets the rectangle area (x, y, width, height) around the contour
 
-    # Adjust aspect ratio filter to be more flexible
+    # Filters out rectangles that look like license plates (wide shape, not too small).
     aspect_ratio = w / float(h)
     if 1.5 < aspect_ratio < 6.5 and w > 50 and h > 20:  # Ensure it's not too small
         # Draw rectangle around the detected plate
         cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 3)
-        plate = image[y:y+h, x:x+w]  # Extract license plate
+        # Cuts out the license plate from the image
+        plate = image[y:y+h, x:x+w]
 
-        # Convert extracted plate to grayscale
+        # Converts the plate image to grayscale
         plate_gray = cv2.cvtColor(plate, cv2.COLOR_BGR2GRAY)
 
-        # Apply adaptive thresholding to improve OCR accuracy
+        # Makes the text clearer using adaptive thresholding to improve OCR accuracy
         plate_thresh = cv2.adaptiveThreshold(plate_gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
 
-        # Apply morphological operations to reduce noise (smaller kernel to reduce streaks)
+        # Removes small noise using a morphological filter (close gaps in letters)
         kernel = np.ones((2, 2), np.uint8)  # Smaller kernel to reduce artifacts
         plate_thresh = cv2.morphologyEx(plate_thresh, cv2.MORPH_CLOSE, kernel)
 
-        # Recognize text from the license plate
+        # Uses Tesseract OCR to read text from the license plate image and prints it
         plate_text = pytesseract.image_to_string(plate_thresh, config='--psm 7 --oem 3')
         print(f"Detected License Plate: '{plate_text.strip()}'")
 
-        # Show extracted plate
+        # Shows the processed image of the license plate
         plt.figure(figsize=(4, 2))
         plt.imshow(plate_thresh, cmap="gray")
         plt.title("Extracted License Plate")
         plt.axis("off")
         plt.show()
 
-        # Check OCR confidence levels
+        # Shows what words were detected and how confident the OCR was
         data = pytesseract.image_to_data(plate_thresh, output_type=pytesseract.Output.DICT)
         print("Detected Words:", data["text"])
         print("Confidence Levels:", data["conf"])
