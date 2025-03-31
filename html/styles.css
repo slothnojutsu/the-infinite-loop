@@ -1,0 +1,216 @@
+/* Basic Layout */
+html, body {
+    height: 100%;  /* Ensure the full height is used */
+    margin: 0;     /* Remove default margin */
+    padding: 0;    /* Remove default padding */
+    display: flex;
+    flex-direction: column;  /* Stack elements vertically */
+}
+
+/* Container to hold all content */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;  /* Make it take up all available space */
+}
+
+/* Body Styles */
+body {
+    background: linear-gradient(to right, #e384b4, #eeb1cf); /* Gradient background */
+    color: #333;
+    text-align: center;
+    padding-bottom: 50px;  /* Add space at the bottom to avoid overlap with footer */
+    margin: 0;
+    padding: 0;
+    display: flex;            /* Use Flexbox */
+    align-items: center;      /* Center vertically */
+    width: 100%;
+}
+
+/* Header Styles */
+header {
+    
+    background: linear-gradient(to right, #e384b4, #eeb1cf);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%; /* Ensure header spans full width */
+}
+
+/* margin-top/bottom: to bring the lines closer*/
+header h1 {
+    font-family: 'Lobster', sans-serif;
+    text-align: center; 
+    margin-bottom: 10px;      /* Remove any unnecessary bottom margin */
+}
+
+header h2 {
+    font-family: 'Lora', sans-serif;
+    font-size: 22px;
+    text-align: center; 
+    margin-bottom: 5px;      /* Remove any unnecessary bottom margin */
+}
+
+header p {
+    font-family: 'Lora', sans-serif;
+    margin-top: 10px;      /* Remove any unnecessary top margin */
+    margin-bottom: 5px;
+}
+
+/* Input Field */
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 300px;
+}
+
+/* Button Styling */
+button {
+    font-family: 'Lora', sans-serif;
+    padding: 12px 30px;
+    margin-bottom: 10px;   /* Add space between buttons */
+    margin-right: 10px;   /* Add space between buttons */
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #e8c8da; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for button */
+button:hover {
+    background-color: #45a049; /* Darker green when hovered */
+    transform: scale(1.05); /* Slightly grow the button */
+}
+
+/* Focus effect for button */
+button:focus {
+    outline: none; /* Removes default outline */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add glow effect when focused */
+}
+
+
+/* Results Section Styling */
+#results {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+/*take zip to the right
+/* ************************* */
+/* ************************* */
+/* ************************* */
+
+/* ZIP Code Input Section */
+.zip-container {
+    position: absolute;
+    top: 30%;     /* Adjust the vertical position */
+    right: 5%;    /* Align to the right side */
+    text-align: left;
+}
+
+#zipCode {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 250px;
+}
+/* ************************* */
+/* ************************* */
+/* ************************* */
+
+/* Navbar Styles */
+nav {
+    background: #333;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Adjusting padding and margins for the list */
+ul {
+        /* bullet points
+        /*padding-left: 20px; /* Space between the left edge and the bullet point
+        list-style-position: inside; /* Ensures the bullet points are inside the padding area*/
+
+        /* no bullet points */
+        list-style-type: none;
+        padding-left: 0; /* Remove padding to align items properly */
+    }
+    
+    li {
+
+        /* bullet points
+        margin-left: 0; /* Remove any extra space on the left side of the list items
+        padding-left: 10px; /* Add some space between the bullet and the text */
+
+        /* no bullet points */
+        padding-left: 10px; /* Add some space between the edge and the text */
+    }
+
+
+/* Section Styles */
+#content, #profile {
+    padding: 20px;
+}
+
+footer {
+    font-family: 'Lora', sans-serif;
+    text-align: left; /* Align text to the left in the footer */
+    padding-left: 20px; /* Add some padding for better spacing */
+    margin-top: 20px;
+    padding: 10px;
+    background: linear-gradient(to right, #423f3f, #6c6b6b);
+    color: white;
+    width: 100%;  /* Ensure footer covers full width */
+    position: relative; /* Keeps the footer positioned in the normal flow of the document */
+    margin-top: auto; /* Push footer to the bottom */
+    bottom: 0;  /* Ensures that the footer is at the bottom of the page */
+}
+    
+footer h4 {
+    text-align: left;   /* Align the heading to the left */
+    margin-top: 0;      /* Remove any unnecessary top margin */
+    margin-left: 20px; /* Adds space before the text in the footer */
+    font-size: 18px;    /* make the text smaller or larger */
+    
+    /* margin-bottom: 5px; */
+}
+
+footer p {
+    font-size: 14px; /* make the text smaller or larger */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 20px; /* Adds space before the text in the footer */
+}
+
+footer h5 {
+    margin-left: 20px; /* Adds space before the text in the footer */
+}
