@@ -11,23 +11,27 @@ html, body {
 .content-wrapper {
     display: flex;
     flex-direction: column;
-    height: 100%;  /* Make it take up all available space */
+    /*height: 100%;  /* Make it take up all available space */
+    flex: 1;
 }
 
-/* Body Styles */
+/* ************************* */
+/* *********BODY************ */
+/* ************************* */
 body {
     background: linear-gradient(to right, #e384b4, #eeb1cf); /* Gradient background */
     color: #333;
     text-align: center;
     padding-bottom: 50px;  /* Add space at the bottom to avoid overlap with footer */
-    margin: 0;
-    padding: 0;
     display: flex;            /* Use Flexbox */
     align-items: center;      /* Center vertically */
-    width: 100%;
+    flex-direction: column;
+    height: 100%;
 }
 
-/* Header Styles */
+/* ************************* */
+/* *********HEADER********** */
+/* ************************* */
 header {
     
     background: linear-gradient(to right, #e384b4, #eeb1cf);
@@ -37,17 +41,14 @@ header {
     width: 100%; /* Ensure header spans full width */
 }
 
-/* margin-top/bottom: to bring the lines closer*/
 header h1 {
     font-family: 'Lobster', sans-serif;
-    text-align: center; 
     margin-bottom: 10px;      /* Remove any unnecessary bottom margin */
 }
 
 header h2 {
     font-family: 'Lora', sans-serif;
     font-size: 22px;
-    text-align: center; 
     margin-bottom: 5px;      /* Remove any unnecessary bottom margin */
 }
 
@@ -68,12 +69,13 @@ input {
     max-width: 300px;
 }
 
-/* Button Styling */
+/* ************************* */
+/* *********BUTTON********** */
+/* ************************* */
 button {
     font-family: 'Lora', sans-serif;
     padding: 12px 30px;
     margin-bottom: 10px;   /* Add space between buttons */
-    margin-right: 10px;   /* Add space between buttons */
     font-size: 16px;
     font-weight: bold;
     background-color: #e8c8da; /* Green background */
@@ -104,14 +106,11 @@ button:focus {
     font-size: 18px;
 }
 
-/*take zip to the right
 /* ************************* */
+/* *********ZIP CODE******** */
 /* ************************* */
-/* ************************* */
-
-/* ZIP Code Input Section */
 .zip-container {
-    position: absolute;
+    /*position: absolute;
     top: 30%;     /* Adjust the vertical position */
     right: 5%;    /* Align to the right side */
     text-align: left;
@@ -123,14 +122,12 @@ button:focus {
     border: 2px solid #ddd;
     border-radius: 8px;
     margin-bottom: 20px;
-    width: 80%;
     max-width: 250px;
 }
-/* ************************* */
-/* ************************* */
-/* ************************* */
 
-/* Navbar Styles */
+/* ************************** */
+/* *********NAV BAR********** */
+/* ************************** */
 nav {
     background: #333;
     padding: 10px;
@@ -181,23 +178,53 @@ ul {
     padding: 20px;
 }
 
+/* ************************* */
+/* *********PROFILE********* */
+/* ************************* */
+#user-profile {
+    text-align: left;
+    background: white;  /* White background */
+    padding: 20px;      /* Add space inside the box */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for a lifted effect */
+    max-width: 600px;   /* Limit width to keep it readable */
+    margin: 20px auto;  /* Center it on the page */
+    border: 1px solid #ccc; /* Light gray border */
+}
+
+#user-profile h3 {
+    text-align: center;  /* Center the section titles */
+    margin-bottom: 10px; /* Space below the title */
+}
+
+#user-profile p,
+#user-profile ul {
+    text-align: left;  /* Keep content left-aligned */
+    margin-left: 10px; /* Optional: slight indentation */
+}
+#logout {           /*have logout button in the center instead of left */
+    text-align: center;
+    margin-bottom: 10px; 
+}
+
+/* ************************* */
+/* *********FOOTER********** */
+/* ************************* */
 footer {
     font-family: 'Lora', sans-serif;
     text-align: left; /* Align text to the left in the footer */
     padding-left: 20px; /* Add some padding for better spacing */
-    margin-top: 20px;
-    padding: 10px;
     background: linear-gradient(to right, #423f3f, #6c6b6b);
     color: white;
     width: 100%;  /* Ensure footer covers full width */
     position: relative; /* Keeps the footer positioned in the normal flow of the document */
     margin-top: auto; /* Push footer to the bottom */
-    bottom: 0;  /* Ensures that the footer is at the bottom of the page */
 }
+
     
 footer h4 {
     text-align: left;   /* Align the heading to the left */
-    margin-top: 0;      /* Remove any unnecessary top margin */
+    margin-top: 10px;      /* Remove any unnecessary top margin */
     margin-left: 20px; /* Adds space before the text in the footer */
     font-size: 18px;    /* make the text smaller or larger */
     
@@ -214,3 +241,6 @@ footer p {
 footer h5 {
     margin-left: 20px; /* Adds space before the text in the footer */
 }
+
+
+/* margin-top/bottom: to bring the lines closer*/
