@@ -32,8 +32,10 @@
     <div id="user-profile">
         <section id="user-info">
             <h3>Personal Information</h3>
-            <p><strong>Name:</strong> John Doe</p>
-            <p><strong>Email:</strong> johndoe@example.com</p>
+            <!-- added id here so it takes info from register
+            and puts it in the name and email section-->
+            <p><strong>Name:</strong> <span id="full-name"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
             <p><strong>Phone:</strong> +1 (123) 456-7890</p>
         </section>
 
@@ -43,6 +45,15 @@
             <p><strong>Vehicle Type:</strong> Sedan</p>
             <p><strong>Vehicle Color:</strong> Blue</p>
         </section>
+        
+        <!--puts the info from the register page into the 
+        name and email part of the page-->
+        <script>
+            const name = localStorage.getItem('full-name');
+            const email = localStorage.getItem('email');
+            document.getElementById('full-name').textContent = name;
+            document.getElementById('email').textContent = email;
+        </script>
 
         <section id="parking-history">
             <h3>Parking History</h3>
