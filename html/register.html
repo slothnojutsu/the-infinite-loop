@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +9,25 @@
 </head>
 <body>
    <!--added a header section to make it white and bolder-->
-    <header>
-         <h1>Register</h1>
+   <header>
+        <h1>Welcome to ParKing
+            <img src="crown2.png" alt="Logo" class="header-image">
+        </h1>
+
+        <p>Your ultimate solution for finding parking spots nearby!</p>
     </header>
+
+    <div class="content-wrapper">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="zip.html">Availability</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="login.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
     <div class="form-container" id="form">            <!--wraps the entire login form-->
         <form action="/register" method="POST">
             <label for="register-name"><b>Full Name</b></label>
@@ -50,15 +67,19 @@
         </script>
 
         <p>Already have an account? <a href="login.html">Login here</a></p>
-        
+    </div>
+            
         <!--marquee is what makes the car move across the screen-->
         <marquee width="100%" direction="left" height="200px">
         <img src="AEFR.png" alt="vroom" width="300" height="200">
         </marquee>
 
         <footer>
-            <p>&copy; 2025 ParKing. All rights reserved.</p>
+            <h4>Why Choose ParKing?</h4>
+            <p>ParKing helps you quickly locate parking spaces in your area. Whether you're at work, shopping, or at a concert, finding a spot has never been easier!</p>
+            <p>Our system provides real-time updates on available spaces, ensuring you never waste time circling the block again.</p></p>
+            
+            <h5>&copy; 2025 ParKing. All rights reserved.</h5>
         </footer>
-    </div>
 </body>
 </html>
