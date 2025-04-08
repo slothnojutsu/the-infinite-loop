@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,18 +14,18 @@
         </h1>
 
         <p>Your ultimate solution for finding parking spots nearby!</p>
-    </header>
 
-    <div class="content-wrapper">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="zip.html">Availability</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="login.html">Sign Up</a></li>
-            </ul>
-        </nav>
-    </div>
+        <div class="content-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="zip.html">Availability</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="login.html">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <div class="form-container" id="form">            <!--wraps the entire login form-->
         <form action="/register" method="POST">
@@ -42,6 +41,12 @@
             <label for="register-confirm-password"><b>Confirm Password</b></label>
             <br><input type="password" id="register-confirm-password" name="confirm-password" required placeholder="Confirm your password">
             
+            <label for="register-phone-number"><b>Phone Number</b></label>
+            <br><input type="number" id="register-pnum" name="pnum" required placeholder="Enter your phone number">
+
+            <label for="register-license-plate"><b>License Plate</b></label>
+            <br><input type="text" id="register-lpnum" name="lpnum" required placeholder="Enter your license plate number">
+
             <button type="submit"> Register</button>
         </form>
         
@@ -52,6 +57,8 @@
         const form = document.getElementById('form');
         const fullName = document.getElementById('register-name');
         const email = document.getElementById('register-email');
+        const pnum = document.getElementById('register-pnum');
+        const lpnum = document.getElementById('register-lpnum');
 
         form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -60,6 +67,8 @@
         
         localStorage.setItem('full-name', fullName.value);
         localStorage.setItem('email', email.value);
+        localStorage.setItem('pnum', pnum.value);
+        localStorage.setItem('lpnum', lpnum.value);
         
         window.location.href = "profile.html";
         })
