@@ -33,17 +33,24 @@ body {
 /* *********HEADER********** */
 /* ************************* */
 header {
-    
     background: linear-gradient(to right, #e384b4, #eeb1cf);
-    color: white;
+    background-color: white;
+    color: black;
     padding: 20px;
     text-align: center;
     width: 100%; /* Ensure header spans full width */
 }
 
 header h1 {
+    font-size: 36px;
     font-family: 'Lobster', sans-serif;
     margin-bottom: 10px;      /* Remove any unnecessary bottom margin */
+    margin-top: 10px;
+}
+
+.header-image {
+    width: 70px;  /* Adjust the width */
+    height: auto; /* Maintain aspect ratio */
 }
 
 header h2 {
@@ -56,6 +63,24 @@ header p {
     font-family: 'Lora', sans-serif;
     margin-top: 10px;      /* Remove any unnecessary top margin */
     margin-bottom: 5px;
+}
+
+ 
+#rates {
+    text-align: left;
+    background: white;  /* White background */
+    padding: 20px;      /* Add space inside the box */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for a lifted effect */
+    max-width: 600px;   /* Limit width to keep it readable */
+    margin: 20px auto;  /* Center it on the page */
+    border: 1px solid #ccc; /* Light gray border */
+}
+#rates h2{
+    /*text-decoration-style: solid;  /* Solid line (other options: dotted, dashed) */
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: black;
 }
 
 /* Input Field */
@@ -181,8 +206,8 @@ ul {
 /* ************************* */
 /* *********PROFILE********* */
 /* ************************* */
-#user-profile {
-    text-align: left;
+#profile {
+    text-align: center;
     background: white;  /* White background */
     padding: 20px;      /* Add space inside the box */
     border-radius: 10px; /* Rounded corners */
@@ -192,21 +217,25 @@ ul {
     border: 1px solid #ccc; /* Light gray border */
 }
 
-#user-profile h3 {
+#profile h3 {
     text-align: center;  /* Center the section titles */
-    margin-bottom: 10px; /* Space below the title */
+    text-decoration: underline;
+    text-decoration-color: black;
 }
 
-#user-profile p,
-#user-profile ul {
-    text-align: left;  /* Keep content left-aligned */
-    margin-left: 10px; /* Optional: slight indentation */
+#profile p, ul{
+    text-align: left;
 }
+
 #logout {           /*have logout button in the center instead of left */
     text-align: center;
     margin-bottom: 10px; 
 }
 
+span.edit-icon:hover {
+    opacity: 0.6;
+  }
+  
 /* ************************* */
 /* *********FOOTER********** */
 /* ************************* */
