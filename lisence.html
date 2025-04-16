@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Management</title>
+    <link rel="stylesheet" href="lisence.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Parking Management System</h1>
+            
+            <div class="input-group">
+                <label for="numIp">License Plate Number</label>
+                <input 
+                    type="text" 
+                    id="numIp"
+                    placeholder="Enter your license plate number"
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="plIp">Parking Lot Number</label>
+                <input 
+                    type="text" 
+                    id="plIp"
+                    placeholder="Enter parking lot number"
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="parkingLot">Select Parking Area</label>
+                <select id="parkingLot">
+                    <option value="">-- Select parking area --</option>
+                    <option value="one">Area One</option>
+                    <option value="two">Area Two</option>
+                    <option value="three">Area Three</option>
+                    <option value="four">Area Four</option>
+                </select>
+            </div>
+
+            <button class="submit-btn">Continue</button>
+        </div>
+    </div>
+</body>
+</html>
