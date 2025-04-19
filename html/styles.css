@@ -204,9 +204,9 @@ ul {
 }
 
 /* ************************* */
-/* *********PROFILE********* */
+/* **********BOXES********** */
 /* ************************* */
-#profile {
+#container {
     text-align: center;
     background: white;  /* White background */
     padding: 20px;      /* Add space inside the box */
@@ -217,25 +217,110 @@ ul {
     border: 1px solid #ccc; /* Light gray border */
 }
 
-#profile h3 {
+#container h3 {
     text-align: center;  /* Center the section titles */
     text-decoration: underline;
     text-decoration-color: black;
+    font-size: 22px;
+    font-weight: bold;
 }
 
-#profile p, ul{
+#container p, ul{
     text-align: left;
+    font-size: 18px;
 }
 
+#confettie {
+    text-align: center;
+    background-image: url('confettie.gif');
+    background-size: 50%;
+    padding: 20px;      /* Add space inside the box */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for a lifted effect */
+    max-width: 600px;   /* Limit width to keep it readable */
+    margin: 20px auto;  /* Center it on the page */
+    border: 1px solid #ccc; /* Light gray border */
+}
+
+#confettie p{
+    font-size: 20px;
+}
+
+/* *********Profile********** */
 #logout {           /*have logout button in the center instead of left */
     text-align: center;
     margin-bottom: 10px; 
 }
 
+/* *********Register********** */
+form label {
+    font-size: 18px;
+}
+
+form input {
+    font-size: 15px;
+}
+
+#alr {
+    text-align: center;
+    font-size: 16px;
+}
+
 span.edit-icon:hover {
     opacity: 0.6;
+}
+/* ******time drop down******* */
+select {
+    font-size: 15px;       /* makes text bigger */
+    padding: 10px;         /* increases spacing inside */
+    height: 45px;          /* optional: force taller dropdown */
+    width: 100%;           /* full width */
+    border-radius: 6px;    /* rounded corners */
+}
+
+/*
+.gif-box {
+    position: relative;
+    display: inline-block;
+    margin: 50px auto;
+    text-align: center;
   }
   
+  .gif-box .gif {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+  }
+  
+.text-overlay {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;         /* make it as wide as the GIF *//*
+    height: 100%;        /* make it as tall as the GIF *//*
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    color: white;
+    font-family: 'Lora', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.0); /* transparent *//*
+    text-align: center;
+    box-sizing: border-box;
+}
+  
+.text-overlay p {
+    font-size: 20px;
+}
+
+.text-overlay a {
+    font-size: 18px;
+    justify-content: bottom;
+}
+*/
 /* ************************* */
 /* *********FOOTER********** */
 /* ************************* */
