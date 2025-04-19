@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ParKing - Profile</title>
+    <title>Profile - ParKing</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
@@ -11,8 +11,7 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to ParKing</h1>
-        <h2>User Profile</h2>
+        <h1>Welcome to ParKing<img src="crown2.png" alt="Logo" class="header-image"></h1>
 
         <p></p> <!--empty line, so they are not too close to one another-->
 
@@ -29,12 +28,9 @@
 
     </header>
 
-    <div id="profile">
+    <div id="container">
         <section id="user-info">
-            <div class="section-heading">
-                <h3>Personal Information</h3>
-                <span class="edit-icon" onclick="editSection('user-info')">🖉</span>
-              </div>
+            <h3>Personal Information</h3>
             <!-- added id here so it takes info from register
             and puts it in the name and email section-->
             <p><strong>Name:</strong> <span id="full-name"></span></p>
@@ -43,11 +39,8 @@
         </section>
 
         <section id="license-plate">
-            <div class="section-heading">
-                <h3>Vehicle Information</h3>
-                <span class="edit-icon" onclick="editSection('user-info')">🖉</span>
-              </div>
-                <p><strong>License Plate:</strong> <span id="lpnum"></span></p>
+            <h3>Vehicle Information</h3>
+            <p><strong>License Plate:</strong> <span id="lpnum"></span></p>
         </section>
         
         <!--puts the info from the register page into the 
@@ -191,6 +184,18 @@
             }
           });
         };
+        
+        function logout() {
+            // Clear localStorage to log the user out
+            localStorage.clear();
+
+            // Show a message (optional)
+            alert("You have been logged out.");
+
+            // Redirect to the login page
+            window.location.href = "login.html";
+        }
+    </script>
         </script>
         
     <p></p> <!--empty line, so they are not too close to one another-->
