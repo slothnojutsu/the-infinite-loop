@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Page</title>
+    <link rel="stylesheet" href="confirm.css">
+</head>
+<body>
+    <div class="confirm-form">
+        <div class="header">
+            <h1>Confirm</h1>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="LPN">License Plate Number</label>
+                <input 
+                    type="number"
+                    id="LPN"
+                    min="0"
+                >
+            </div>
+            <div class="form-group">
+                <label for="PLN">Parking Lot Number</label>
+                <input 
+                    type="number" 
+                    id="PLN"
+                    min="0"
+                >
+            </div>
+            <div class="form-group">
+                <label for="timeLong">How Long</label>
+                <input 
+                    type="text" 
+                    id="timeLong"
+                >
+            </div>
+            <div class="form-group"> 
+                <label for="appt">Select a time:</label>
+                <input type="time" id="appt" name="appt">
+            </div>
+        </form>
+
+        <br><br>
+
+        <button type="submit">submit</button>
+    </div>
+</body>
+</html>
