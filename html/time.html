@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Select Time - ParKing</title>
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1>Welcome to ParKing<img src="crown2.png" alt="Logo" class="header-image"></h1>
+            <h2>User Profile</h2>
+            <p></p> <!--empty line, so they are not too close to one another-->
+            <div class="content-wrapper">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="zip.html">Availability</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="login.html">Sign Up</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+        <!--div class="input-group">
+            <label for="numIp">License Plate Number</label>
+            <input 
+            type="text" 
+            id="numIp"
+            placeholder="Enter your license plate number"
+            >
+    </div>
+
+        <div class="input-group">
+            <label for="plIp">Parking Lot Number</label>
+            <input 
+                type="text" 
+                id="plIp"
+                placeholder="Enter parking lot number"
+            >
+        </div-->
+
+    <div id="container">
+        <h3>Select Parking Time</h2>
+        <p>How long would you like to park?</p>
+        <select id="parking-time">
+            <option value="Standard Hourly - $2.00/hour">Standard Hourly - $2.00/hour</option>
+            <option value="Premium Hourly - $3.50/hour">Premium Hourly - $3.50/hour</option>
+            <option value="Standard Daily - $15.00/day">Standard Daily - $15.00/day</option>
+            <option value="Premium Daily - $20.00/day">Premium Daily - $20.00/day</option>
+            <option value="Standard Weekly - $75.00/week">Standard Weekly - $75.00/week</option>
+            <option value="Premium Weekly - $100.00/week">Premium Weekly - $100.00/week</option>
+            <option value="Standard Monthly - $200.00/month">Standard Monthly - $200.00/month</option>
+            <option value="Premium Monthly - $300.00/month">Premium Monthly - $300.00/month</option>
+            <option value="Reserved Monthly - $250.00/month">Reserved Monthly - $250.00/month</option>
+            <option value="Event Parking - $10.00/hour (max $30/day)">Event Parking - $10.00/hour (max $30/day)</option>
+        </select>
+
+        <p></p> <!--empty line, so they are not too close to one another-->
+
+        <button onclick="saveTime()">Continue</button>
+        
+        <script>
+            function saveTime() {
+                const time = document.getElementById("parking-time").value;
+                localStorage.setItem("parking-time", time);
+                alert("Time saved: " + time);
+                    window.location.href = "confirmation.html"; // redirect to confirmation page
+                }
+            </script>
+        </div>
+
+        <footer>
+            <h4>Why Choose ParKing?</h4>
+            <p>ParKing helps you quickly locate parking spaces in your area. Whether you're at work, shopping, or at a concert, finding a spot has never been easier!</p>
+            <p>Our system provides real-time updates on available spaces, ensuring you never waste time circling the block again.</p></p>
+            
+            <h5>&copy; 2025 ParKing. All rights reserved.</h5>
+        </footer>
+
+    </body>
+</html>
