@@ -23,18 +23,30 @@ app.config['MYSQL_DB'] = 'user_info'
 mysql = MySQL(app)
 
 def save_dataframe(df, table_name):
-    cols = ", ".join(df.columns)
+    # Wrap table and column names in backticks to avoid reserved-word issues:
+    safe_table = f"`{table_name}`"
+    safe_cols  = ", ".join(f"`{col}`" for col in df.columns)
+
+    # Build the placeholder string (%s per column):
     placeholders = ", ".join(["%s"] * len(df.columns))
-    sql = f"INSERT INTO {table_name} ({cols}) VALUES ({placeholders})"
+    sql = f"INSERT INTO {safe_table} ({safe_cols}) VALUES ({placeholders})"
+
+    print("DEBUG SQL:", sql)  # print the exact statement for debugging
+
+    # Convert DataFrame to list of tuples
+    data = [tuple(row) for row in df.to_numpy()]
 
     with app.app_context():
         conn = mysql.connection
         cur = conn.cursor()
-        # Convert each DataFrame row to a tuple
-        data = [tuple(row) for row in df.to_numpy()]
-        # Bulk‐insert all rows
-        cur.executemany(sql, data)
-        conn.commit()
-        cur.close()
+        try:
+            cur.executemany(sql, data)
+            conn.commit()
+        except Exception as e:
+            print("INSERT ERROR:", e)   # log the full error
+            conn.rollback()
+            raise
+        finally:
+            cur.close()
 
 save_dataframe(df_sql, "Car License Number")
