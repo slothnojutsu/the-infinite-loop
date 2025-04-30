@@ -1,96 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">      <!--mobile-friendly-->
-    <title>Register - ParKing</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - ParKing</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
 <body>
-   <!--added a header section to make it white and bolder-->
-   <header>
-        <h1>Welcome to ParKing
-            <img src="crown2.png" alt="Logo" class="header-image">
-        </h1>
-        <h2>Register Your Account</h2>
+  <header>
+    <h1>Welcome to ParKing
+      <img src="crown2.png" alt="Logo" class="header-image">
+    </h1>
+    <h2>Register Your Account</h2>
 
-        <div class="content-wrapper">
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="zip.html">Availability</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="login.html">Sign In</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <div id="container">
-        <form action="/register" method="POST">
-            <label for="register-name"><b>Full Name</b></label>
-            <br><input type="text" id="register-name" name="name" required placeholder="Full Name"><br>
-                
-            <label for="register-email"><b>Email</b></label>
-            <br><input type="email" id="register-email" name="email" required placeholder="Email">
-            
-            <label for="register-password"><b>Password</b></label>
-            <br><input type="password" id="register-password" name="password" required placeholder="Password">
-                
-            <label for="register-confirm-password"><b>Confirm Password</b></label>
-            <br><input type="password" id="register-confirm-password" name="confirm-password" required placeholder="Confirm Password">
-                
-            <label for="register-phone-number"><b>Phone Number</b></label>
-            <br><input type="number" id="register-pnum" name="pnum" required placeholder="Phone Number">
+    <div class="content-wrapper">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="zip.html">Availability</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="login.html">Sign In</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-            <label for="register-license-plate"><b>License Plate</b></label>
-            <br><input type="text" id="register-lpnum" name="lpnum" required placeholder="License Plate Number">
+  <div id="container">
+    <form id="signup-form">
+      <label for="register-name"><b>Full Name</b></label>
+      <br><input type="text" id="register-name" name="name" required placeholder="Full Name"><br>
 
-            <button type="submit">Sign up</button>
-        </form>
-            
-            <!--added script so it saves the info put in
-            from here to the profile page when the button is clicked
-            It's just the name and email-->
-        <script> 
-            const form = document.getElementById('form');
-            const fullName = document.getElementById('register-name');
-            const email = document.getElementById('register-email');
-            const pnum = document.getElementById('register-pnum');
-            const lpnum = document.getElementById('register-lpnum');
+      <label for="register-email"><b>Email</b></label>
+      <br><input type="email" id="register-email" name="email" required placeholder="Email">
 
-            // Redirect if already logged in
-            if (localStorage.getItem('full-name') && localStorage.getItem('email')) {
-                alert("You are already logged in.");
-                window.location.href = "profile.html";
-            }
+      <label for="register-password"><b>Password</b></label>
+      <br><input type="password" id="register-password" name="password" required placeholder="Password">
 
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
+      <label for="register-confirm-password"><b>Confirm Password</b></label>
+      <br><input type="password" id="register-confirm-password" name="confirm-password" required placeholder="Confirm Password">
 
-                localStorage.setItem('full-name', fullName.value);
-                localStorage.setItem('email', email.value);
-                localStorage.setItem('pnum', pnum.value);
-                localStorage.setItem('lpnum', lpnum.value);
+      <label for="register-phone-number"><b>Phone Number</b></label>
+      <br><input type="number" id="register-pnum" name="pnum" required placeholder="Phone Number">
 
-               window.location.href = "profile.html";
-            });
-        </script>
-        
-        <h2 id="alr">Already have an account? <a href="login.html">Sign in</a></h2>
-    </div>   
-        <!--marquee is what makes the car move across the screen-->
-        <marquee width="100%" direction="left" height="200px">
-        <img src="AEFR.png" alt="vroom" width="300" height="200">
-        </marquee>
+      <label for="register-license-plate"><b>License Plate</b></label>
+      <br><input type="text" id="register-lpnum" name="lpnum" required placeholder="License Plate Number">
 
-        <footer>
-            <h4>Why Choose ParKing?</h4>
-            <p>ParKing helps you quickly locate parking spaces in your area. Whether you're at work, shopping, or at a concert, finding a spot has never been easier!</p>
-            <p>Our system provides real-time updates on available spaces, ensuring you never waste time circling the block again.</p></p>
-            
-            <h5>&copy; 2025 ParKing. All rights reserved.</h5>
-        </footer>
+      <p id="error-message" style="color: red; display: none;">Passwords do not match!</p>
+
+      <button type="submit">Sign In</button>
+    </form>
+
+    <script>
+      const form = document.getElementById('signup-form');
+      const fullName = document.getElementById('register-name');
+      const email = document.getElementById('register-email');
+      const password = document.getElementById('register-password');
+      const confirmPassword = document.getElementById('register-confirm-password');
+      const pnum = document.getElementById('register-pnum');
+      const lpnum = document.getElementById('register-lpnum');
+      const errorMessage = document.getElementById('error-message');
+
+      if (localStorage.getItem('full-name') && localStorage.getItem('email')) {
+        alert("You are already logged in.");
+        window.location.href = "profile.html";
+      }
+
+      form.addEventListener('submit', function (e) {
+        if (password.value !== confirmPassword.value) {
+          e.preventDefault();
+          errorMessage.style.display = 'block';
+        } else {
+          errorMessage.style.display = 'none';
+          localStorage.setItem('full-name', fullName.value);
+          localStorage.setItem('email', email.value);
+          localStorage.setItem('pnum', pnum.value);
+          localStorage.setItem('lpnum', lpnum.value);
+          window.location.href = "profile.html";
+        }
+      });
+    </script>
+
+    <h2 id="alr">Already have an account? <a href="login.html">Sign in</a></h2>
+  </div>
+
+  <marquee width="100%" direction="left" height="200px">
+    <img src="AEFR.png" alt="vroom" width="300" height="200">
+  </marquee>
+
+  <footer>
+    <h4>Why Choose ParKing?</h4>
+    <p>ParKing helps you quickly locate parking spaces in your area. Whether you're at work, shopping, or at a concert, finding a spot has never been easier!</p>
+    <p>Our system provides real-time updates on available spaces, ensuring you never waste time circling the block again.</p>
+    <h5>&copy; 2025 ParKing. All rights reserved.</h5>
+  </footer>
 </body>
 </html>
