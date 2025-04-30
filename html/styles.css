@@ -41,7 +41,7 @@ header {
 
 header h1 {
     font-size: 36px;
-    font-family: 'Lobster', sans-serif;
+    font-family: cursive;
     margin-bottom: 10px;      /* Remove any unnecessary bottom margin */
     margin-top: 10px;
 }
@@ -52,13 +52,13 @@ header h1 {
 }
 
 header h2 {
-    font-family: 'Lora', sans-serif;
+    font-family: cursive;
     font-size: 22px;
     margin-bottom: 5px;      /* Remove any unnecessary bottom margin */
 }
 
 header p {
-    font-family: 'Lora', sans-serif;
+    font-family: cursive;
     margin-top: 10px;      /* Remove any unnecessary top margin */
     margin-bottom: 5px;
 }
@@ -101,7 +101,7 @@ button {
     margin-bottom: 10px;   /* Add space between buttons */
     font-size: 16px;
     font-weight: bold;
-    background-color: #df7ab3; /* Green background */
+    background-color: #db6eac; /* Green background */
     color: white;
     border: none;
     border-radius: 25px; /* Rounded corners */
@@ -112,16 +112,9 @@ button {
 
 /* Hover effect for button */
 button:hover {
-    background-color: #45a049; /* Darker green when hovered */
+    background-color: #005fa3; /* Dark blue when hovered */
     transform: scale(1.05); /* Slightly grow the button */
 }
-
-/* Focus effect for button */
-button:focus {
-    outline: none; /* Removes default outline */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add glow effect when focused */
-}
-
 
 /* Results Section Styling */
 #results {
@@ -219,6 +212,7 @@ ul {
     text-align: center;  /* Center the section titles */
     /*text-decoration: underline;*/
     text-decoration-color: black;
+    /*font-family: cursive;*/
     font-size: 22px;
     font-weight: bold;
 }
@@ -318,7 +312,52 @@ select {
     font-size: 18px;
     justify-content: bottom;
 }
-*/
+
+
+/* ************************* */
+/* *********Payment********* */
+/* ************************* */
+
+#receipt-container {
+    background: #fff;
+    padding: 30px;
+    max-width: 400px;
+    margin: auto;
+    border: 1px dashed #aaa;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+#receipt {
+    text-align: center;
+    font-family: cursive;
+}
+.receipt-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 16px;
+}
+.total {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+    border-top: 1px dashed #aaa;
+    padding-top: 10px;
+}
+#payment-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#payment-button:hover {
+    background-color: #005fa3;
+}
+
 /* ************************* */
 /* *********FOOTER********** */
 /* ************************* */
