@@ -21,7 +21,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="zip.html">Availability</a></li>
                     <li><a href="profile.html">Profile</a></li>
-                    <li><a href="login.html">Sign In</a></li>
+                    <li><a href="login.html">Sign Up</a></li>
                 </ul>
             </nav>
         </div>
@@ -42,6 +42,13 @@
             <h3>Vehicle Information</h3>
             <p><strong>License Plate:</strong> <span id="lpnum"></span></p>
         </section>
+
+        <section id="reservation-info">
+            <h3>Your Reservation</h3>
+            <p><strong>Date:</strong> <span id="res-date">N/A</span></p>
+            <p><strong>Time:</strong> <span id="res-time">N/A</span></p>
+            <p><strong>Location:</strong> <span id="res-location">N/A</span></p>
+        </section>
         
         <!--puts the info from the register page into the 
         name and email part of the page-->
@@ -56,25 +63,6 @@
             document.getElementById('pnum').textContent = phone;
             document.getElementById('lpnum').textContent = plate;
         </script>
-
-<!--
-        <section id="parking-history">
-            <h3>Parking History</h3>
-            <ul>
-                <li>March 28, 2025 - Parking at ABC St. - $5.00</li>
-                <li>March 25, 2025 - Parking at BCD Avenue - $7.00</li>
-                <li>March 22, 2025 - Parking at CDE - $10.00</li>
-            </ul>
-        </section>
-
-        <section id="preferences">
-            <h3>Parking Preferences</h3>
-            <p><strong>Preferred Location:</strong> Downtown</p>
-            <p><strong>Price Range:</strong> $5 - $10</p>
-            <p><strong>Preferred Spot:</strong> Covered parking</p>
-        </section>
-        
--->
 
 <section id="settings">
     <h3>Account Settings</h3>
@@ -104,43 +92,6 @@
 
     </div>
 
-    <!--script>
-        // Functions for logout and account updates (can be hooked up to backend)
-        function logout() {
-            alert('Logging out...');
-            // Implement logout logic here
-        }
-
-        function showChangePassword() {
-        document.getElementById("password-section").style.display = "block";
-        }
-
-        function savePassword() {
-        let password = document.getElementById("new-password").value;
-        localStorage.setItem("password", password);
-        window.location.href = "profile.html"; // Go back to profile
-        }
-
-        function showUpdateEmail() {
-        document.getElementById("email-section").style.display = "block";
-        }
-
-        function saveEmail() {
-        let email = document.getElementById("new-email").value;
-        localStorage.setItem("email", email);
-        window.location.href = "profile.html"; // Go back to profile
-        }
-
-        function showVehicle() {
-        document.getElementById("vehicle-section").style.display = "block";
-        }
-
-        function saveVehicle() {
-        let plate = document.getElementById("new-plate").value;
-        localStorage.setItem("lpnum", plate);
-        window.location.href = "profile.html"; // Go back to profile
-        }
-    </script-->
     <script>
         function editSection(sectionId) {
           const section = document.getElementById(sectionId);
@@ -174,6 +125,12 @@
           section.appendChild(saveBtn);
         }
         
+        const latestReservation = JSON.parse(localStorage.getItem("latest-reservation"));
+        if (latestReservation) {
+            document.getElementById("res-area").textContent = latestReservation.area;
+            document.getElementById("res-time").textContent = latestReservation.time;
+        }
+
         // On page load: fill from localStorage
         window.onload = function () {
           ['full-name', 'email', 'pnum', 'lpnum'].forEach(id => {
@@ -188,9 +145,6 @@
         function logout() {
             // Clear localStorage to log the user out
             localStorage.clear();
-
-            // Show a message (optional)
-            alert("You have been logged out.");
 
             // Redirect to the login page
             window.location.href = "login.html";
@@ -208,5 +162,21 @@
         <h5>&copy; 2025 ParKing. All rights reserved.</h5>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('res-date').textContent = localStorage.getItem('reservation-date') || 'Not reserved';
+            document.getElementById('res-time').textContent = localStorage.getItem('parking-time') || 'Not reserved';
+            document.getElementById('res-location').textContent = localStorage.getItem('parking-area') || 'Not reserved';
+        });
+        </script>
+
+    <script>
+        // Check if the user is NOT logged in
+        if (localStorage.getItem('loggedIn') !== 'true') {
+            // If not logged in, redirect to the login page
+            alert("You are not logged in.");
+            window.location.href = "login.html"; // Redirect to login page
+        }
+    </script>
 </body>
 </html>
