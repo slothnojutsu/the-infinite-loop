@@ -28,7 +28,7 @@
     </header>
 
     <div id="container">
-        <form action="/login" method="POST">
+        <form id="login-form">
             <label for="login-email"><b>Email</b></label>
             <input type="email" id="login-email" name="email" required placeholder="Enter your email">
             
@@ -56,11 +56,22 @@
     
     <script>
         // Redirect if already logged in
-        if (localStorage.getItem('full-name') && localStorage.getItem('email')) {
+        if (localStorage.getItem('loggedIn') === 'true') {
             alert("You are already logged in.");
             window.location.href = "profile.html";
         }
+
+        const form = document.getElementById('login-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            localStorage.setItem('loggedIn', 'true');
+            localStorage.setItem('email', email); // optional
+            window.location.href = "profile.html";
+        });
     </script>
-    
+
 </body>
 </html>
