@@ -141,44 +141,29 @@
             }
 
             function selectParking(lat, lon, name, spots) {
-                localStorage.setItem('parking-lat', lat);
-                localStorage.setItem('parking-lon', lon);
-                localStorage.setItem('parking-name', name);
-            
-                const lotDetails = document.getElementById('lotDetails');
-                document.getElementById('availableSpots').textContent = spots;
-            
-                lotDetails.style.display = 'block';
-                lotDetails.scrollIntoView({ behavior: 'smooth' });
+                if (localStorage.getItem('loggedIn') === 'true') {
+                    localStorage.setItem('parking-lat', lat);
+                    localStorage.setItem('parking-lon', lon);
+                    localStorage.setItem('parking-area', name);   // <-- Save the lot name properly
+                    localStorage.setItem('parking-spots', spots);
+
+                    const lotDetails = document.getElementById('lotDetails');
+                    document.getElementById('availableSpots').textContent = spots;
+                    
+                    lotDetails.style.display = 'block';
+                    lotDetails.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert("You must be logged in to reserve a parking spot.");
+                    window.location.href = 'login.html'; // redirect to login page
+                }
             }
 
             function reserveYes() {
-                window.location.href = "time.html";
+                window.location.href = "time.html";  // redirect to select time page
             }
-            
             function goBack() {
                 document.getElementById('lotDetails').style.display = 'none';
                 document.getElementById('container').scrollIntoView({ behavior: 'smooth' });
-            }
-    
-            function showLotDetails(lotName) {
-                const lot = savedLots.find(l => l.name === lotName);
-                if (!lot) return;
-    
-                localStorage.setItem('parking-area', lot.name);
-    
-                document.getElementById('lotInfo').textContent = `${lot.name} has ${lot.availableSpots} spots available.`;
-                document.getElementById('lotSection').style.display = 'block';
-                document.getElementById('lotSection').scrollIntoView({ behavior: 'smooth' });
-            }
-    
-            function scrollToTop() {
-                document.getElementById('lotSection').style.display = 'none';
-                document.getElementById('container').scrollIntoView({ behavior: 'smooth' });
-            }
-    
-            function proceedToReservation() {
-                window.location.href = 'time.html';
             }
         </script>
         
