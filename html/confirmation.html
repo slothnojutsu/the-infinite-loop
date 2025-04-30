@@ -21,37 +21,45 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="zip.html">Availability</a></li>
                         <li><a href="profile.html">Profile</a></li>
-                        <li><a href="login.html">Sign In</a></li>
+                        <li><a href="login.html">Sign Up</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
         <div id="container">  
-            <h2>Confirm Your Parking</h2>
+            <h3>Confirm Your Parking</h3>
             <p><strong>Parking Area:</strong> <span id="parking-area"></span></p>
             <p><strong>License Plate:</strong> <span id="license-plate"></span></p>
             <p><strong>Time Selected:</strong> <span id="parking-time"></span></p>
 
-            <button onclick="window.location.href='reserved.html'">I Agree</button>
+            <button onclick="saveReservation()">I Agree</button>
 
         <script>
-            // Load data from localStorage
-            const area = localStorage.getItem("parking-area");
-            const plate = localStorage.getItem("lpnum");
-            const time = localStorage.getItem("parking-time");
+    // Load data from localStorage
+    const area = localStorage.getItem("parking-area");
+    const plate = localStorage.getItem("lpnum");
+    const time = localStorage.getItem("parking-time");
 
-            document.getElementById("parking-area").textContent = area || "Not set";
-            document.getElementById("license-plate").textContent = plate || "Not set";
-            document.getElementById("parking-time").textContent = time || "Not set";
+    document.getElementById("parking-area").textContent = area || "Not set";
+    document.getElementById("license-plate").textContent = plate || "Not set";
+    document.getElementById("parking-time").textContent = time || "Not set";
 
-            function confirmParking() {
-                const time = document.getElementById("parking-time").value;
-                localStorage.setItem("parking-time", time);
-                alert("Time saved: " + time);
-                    window.location.href = "confirmation.html"; // redirect to confirmation page
-                }
-        </script>
+    // Save confirmed reservation
+    function saveReservation() {
+        const reservation = {
+            area: area,
+            plate: plate,
+            time: time
+        };
+
+        localStorage.setItem("latest-reservation", JSON.stringify(reservation));
+
+        // Redirect to reserved page
+        window.location.href = "reserved.html";
+    }
+</script>
+
     </div>
 
 <footer>
