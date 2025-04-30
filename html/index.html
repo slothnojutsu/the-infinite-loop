@@ -28,13 +28,6 @@
             </nav>
         </div>
     </header>
-            
-        <!-- take zip to the right 
-        /* ************************* */
-        /* ************************* */
-        /* ************************* */
-        <div class="zip-container"> * -->
-
         <p>Enter your ZIP code to check parking availability or use your current location:</p>
         <input type="text" id="zipCode" placeholder="Enter ZIP code">
         
@@ -45,42 +38,129 @@
         </div>
         
         <div id="results"></div>
+        <div id="lotDetails" style="display:none; margin-top: 10px;">
+            <h3>Parking Lot Availability</h3>
+            <p>There are <span id="availableSpots">45</span> spots currently available.</p>
+            <p>Would you like to reserve a spot?</p>
+            <button onclick="reserveYes()">Yes</button>
+            <button onclick="goBack()">No</button>
+        </div>
 
-        <!--
-        /* ************************* */
-        /* ************************* */
-        /* ************************* */
-        </div> * -->
-    
         <script>
-            function findParking() {
-                let zip = document.getElementById('zipCode').value;
-                if (zip === "") {
-                    document.getElementById('results').innerHTML = "Please enter a ZIP code.";
+            const savedLots = [
+                { name: "Downtown Lot", lat: 31.439685, lon: -100.461800, availableSpots: 12 },
+                ];
+    
+            async function getCoordinates(zip) {
+                const response = await fetch(`https://api.zippopotam.us/us/${zip}`);
+                if (!response.ok) throw new Error("Invalid ZIP code");
+                const data = await response.json();
+                return {
+                    lat: parseFloat(data.places[0].latitude),
+                    lon: parseFloat(data.places[0].longitude)
+                };
+            }
+    
+            function haversine(lat1, lon1, lat2, lon2) {
+                const toRad = angle => angle * Math.PI / 180;
+                const R = 3958.8;
+                const dLat = toRad(lat2 - lat1);
+                const dLon = toRad(lon2 - lon1);
+                const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                return R * c;
+            }
+    
+            async function findParking() {
+                const zip = document.getElementById('zipCode').value;
+                const resultDiv = document.getElementById('results');
+    
+                if (!zip) {
+                    resultDiv.innerHTML = "Please enter a ZIP code.";
                     return;
                 }
-                
-                document.getElementById('results').innerHTML = `Searching for parking in ZIP: <b>${zip}</b>...`;
-                
-                // Here, you can add a function to fetch parking data from your backend API
+    
+                resultDiv.innerHTML = "Searching nearby parking lots...";
+    
+                try {
+                    const userCoords = await getCoordinates(zip);
+    
+                    const nearby = savedLots.filter(lot => {
+                        const distance = haversine(userCoords.lat, userCoords.lon, lot.lat, lot.lon);
+                        return distance <= 20;
+                    });
+    
+                    if (nearby.length === 0) {
+                        resultDiv.innerHTML = "No parking lots found within 20 miles.";
+                    } else {
+                        resultDiv.innerHTML = '<b>Available Lots:</b><br>' + nearby.map(lot => `
+                            <div>
+                                <b>${lot.name}</b> — ${lot.availableSpots} spots available
+                                <button onclick="selectParking(${lot.lat}, ${lot.lon}, '${lot.name}', ${lot.availableSpots})">Select</button>
+                            </div>`).join("<br>");
+                    }
+                } catch (err) {
+                    resultDiv.innerHTML = "Error: " + err.message;
+                }
             }
     
             function useCurrentLocation() {
+                const resultDiv = document.getElementById("results");
+    
                 if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(position => {
-                        let lat = position.coords.latitude;
-                        let lon = position.coords.longitude;
-                        document.getElementById('results').innerHTML = `Searching for parking near your location (Lat: ${lat}, Lon: ${lon})...`;
-                        
-                        // Here, you can add a function to fetch parking data based on lat/lon
+                    navigator.geolocation.getCurrentPosition(async position => {
+                        const { latitude, longitude } = position.coords;
+                        resultDiv.innerHTML = "Searching nearby parking lots...";
+    
+                        const nearby = savedLots.filter(lot => {
+                            const distance = haversine(latitude, longitude, lot.lat, lot.lon);
+                            return distance <= 20;
+                        });
+    
+                        if (nearby.length === 0) {
+                            resultDiv.innerHTML = "No parking lots found within 20 miles.";
+                        } else {
+                            resultDiv.innerHTML = '<b>Available Lots:</b><br>' + nearby.map(lot => `
+                                <div>
+                                    <b>${lot.name}</b> — ${lot.availableSpots} spots available
+                                    <button onclick="selectParking(${lot.lat}, ${lot.lon}, '${lot.name}', ${lot.availableSpots})">Select</button>
+                                </div>`).join("<br>");
+                        }
+    
                     }, () => {
-                        document.getElementById('results').innerHTML = "Location access denied. Please enter ZIP manually.";
+                        resultDiv.innerHTML = "Location access denied. Please enter ZIP manually.";
                     });
                 } else {
-                    document.getElementById('results').innerHTML = "Geolocation is not supported by your browser.";
+                    resultDiv.innerHTML = "Geolocation not supported by your browser.";
                 }
             }
-        </script>
+
+            function selectParking(lat, lon, name, spots) {
+                if (localStorage.getItem('loggedIn') === 'true') {
+                    localStorage.setItem('parking-lat', lat);
+                    localStorage.setItem('parking-lon', lon);
+                    localStorage.setItem('parking-area', name);   // <-- Save the lot name properly
+                    localStorage.setItem('parking-spots', spots);
+
+                    const lotDetails = document.getElementById('lotDetails');
+                    document.getElementById('availableSpots').textContent = spots;
+                    
+                    lotDetails.style.display = 'block';
+                    lotDetails.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert("You must be logged in to reserve a parking spot.");
+                    window.location.href = 'login.html'; // redirect to login page
+                }
+            }
+
+            function reserveYes() {
+                window.location.href = "time.html";  // redirect to select time page
+            }
+            function goBack() {
+                document.getElementById('lotDetails').style.display = 'none';
+                document.getElementById('container').scrollIntoView({ behavior: 'smooth' });
+            }
+        </script>    
 
         <section id="rates">
             <h2>Parking Rates</h2>
