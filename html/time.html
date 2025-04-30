@@ -24,24 +24,6 @@
                 </nav>
             </div>
         </header>
-        
-        <!--div class="input-group">
-            <label for="numIp">License Plate Number</label>
-            <input 
-            type="text" 
-            id="numIp"
-            placeholder="Enter your license plate number"
-            >
-    </div>
-
-        <div class="input-group">
-            <label for="plIp">Parking Lot Number</label>
-            <input 
-                type="text" 
-                id="plIp"
-                placeholder="Enter parking lot number"
-            >
-        </div-->
 
     <div id="container">
         <h3>Select Parking Time</h2>
@@ -67,10 +49,15 @@
             function saveTime() {
                 const time = document.getElementById("parking-time").value;
                 localStorage.setItem("parking-time", time);
-                alert("Time saved: " + time);
-                    window.location.href = "confirmation.html"; // redirect to confirmation page
+                // Save today's date
+                const today = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric' }; // like "April 28, 2025"
+                const formattedDate = today.toLocaleDateString(undefined, options);
+                localStorage.setItem('reservation-date', formattedDate);
+                window.location.href = "confirmation.html"; // redirect to confirmation page
                 }
             </script>
+            
         </div>
 
         <footer>
