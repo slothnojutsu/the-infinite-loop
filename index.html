@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">      <!--mobile-friendly-->
+    <title>ParKing👑 - Find Your Parking Spot</title>     <!--shown on brower tab-->
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">           <!--to link to css file for styling-->
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to ParKing
+            <img src="{{url_for('static', filename='crown2.png')}}" alt="Logo" class="header-image">
+        </h1>
+
+        <p>Your ultimate solution for finding parking spots nearby!</p>
+        <div class="content-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="{{url_for('index')}}">Home</a></li>
+                    <li><a href="{{url_for('zip')}}">Availability</a></li>
+                    <li><a href="{{url_for('profile')}}">Profile</a></li>
+                    <li><a href="{{url_for('register')}}">Sign Up</a></li> <!-- i changed this because the button says sign up-->
+                    <li><a href="{{url_for('payment')}}">Pay</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+            
+        <!-- take zip to the right 
+        /* ************************* */
+        /* ************************* */
+        /* ************************* */
+        <div class="zip-container"> * -->
+
+        <p>Enter your ZIP code to check parking availability or use your current location:</p>
+        <input type="text" id="zipCode" placeholder="Enter ZIP code">
+        
+        <!-- Container to separate the buttons -->
+        <div class="button-container">
+            <button onclick="findParking()">Search</button>
+            <button onclick="useCurrentLocation()">Use My Location</button>
+        </div>
+        
+        <div id="results"></div>
+
+        <!--
+        /* ************************* */
+        /* ************************* */
+        /* ************************* */
+        </div> * -->
+    
+        <script>
+            function findParking() {
+                let zip = document.getElementById('zipCode').value;
+                if (zip === "") {
+                    document.getElementById('results').innerHTML = "Please enter a ZIP code.";
+                    return;
+                }
+                
+                document.getElementById('results').innerHTML = `Searching for parking in ZIP: <b>${zip}</b>...`;
+                
+                // Here, you can add a function to fetch parking data from your backend API
+            }
+    
+            function useCurrentLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(position => {
+                        let lat = position.coords.latitude;
+                        let lon = position.coords.longitude;
+                        document.getElementById('results').innerHTML = `Searching for parking near your location (Lat: ${lat}, Lon: ${lon})...`;
+                        
+                        // Here, you can add a function to fetch parking data based on lat/lon
+                    }, () => {
+                        document.getElementById('results').innerHTML = "Location access denied. Please enter ZIP manually.";
+                    });
+                } else {
+                    document.getElementById('results').innerHTML = "Geolocation is not supported by your browser.";
+                }
+            }
+        </script>
+
+        <section id="rates">
+            <h2>Parking Rates</h2>
+            <h3>Hourly Rates</h3>
+            <ul>
+                <li>Standard Parking: $2.00/hour</li>
+                <li>Premium Parking: $3.50/hour</li>
+            </ul>
+            
+            <h3>Daily Rates</h3>
+            <ul>
+                <li>Standard Parking: $15.00/day</li>
+                <li>Premium Parking: $20.00/day</li>
+            </ul>
+            
+            <h3>Weekly Rates</h3>
+            <ul>
+                <li>Standard Parking: $75.00/week</li>
+                <li>Premium Parking: $100.00/week</li>
+            </ul>
+            
+            <h3>Monthly Rates</h3>
+            <ul>
+                <li>Standard Parking: $200.00/month</li>
+                <li>Premium Parking: $300.00/month</li>
+            </ul>
+        
+            <h3>Discounts</h3>
+            <ul>
+                <li>Evening Parking (after 6 PM): 20% off hourly rates</li>
+                <li>Weekend Special: 10% off for weekend parking</li>
+                <li>Frequent Parker Card: 5% off after 10 visits</li>
+            </ul>
+        
+            <h3>Reserved Parking</h3>
+            <ul>
+                <li>Monthly Reserved Parking: $250.00/month</li>
+            </ul>
+            
+            <h3>Special Event Rates</h3>
+            <ul>
+                <li>Concerts/Sports Events: $10.00/hour, max $30.00/day</li>
+            </ul>
+        </section>        
+
+        <footer>
+            <h4>Why Choose ParKing?</h4>
+            <p>ParKing helps you quickly locate parking spaces in your area. Whether you're at work, shopping, or at a concert, finding a spot has never been easier!</p>
+            <p>Our system provides real-time updates on available spaces, ensuring you never waste time circling the block again.</p></p>
+            
+            <h5>&copy; 2025 ParKing. All rights reserved.</h5>
+        </footer>
+    
+</body>
+</html>

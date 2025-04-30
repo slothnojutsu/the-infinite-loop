@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Confirmation - ParKing</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}"><link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to ParKing
+            <img src="{{url_for('static', filename='crown2.png')}}" alt="Logo" class="header-image">
+        </h1>
+
+        <p>Your ultimate solution for finding parking spots nearby!</p></h1>
+        <h2>Find Availability</h2>
+
+        <div class="content-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="{{url_for('index')}}">Home</a></li>
+                    <li><a href="{{url_for('zip')}}">Availability</a></li>
+                    <li><a href="{{url_for('profile')}}">Profile</a></li>
+                    <li><a href="{{url_for('login')}}">Sign Up</a></li>
+                    <li><a href="{{url_for('payment')}}">Pay</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <p></p> <!--empty line, so they are not too close to one another-->
+        
+    </header>
+
+    <div id="receipt-container">
+        <h1 id="receipt">ParKing Receipt</h1>
+
+        <div class="receipt-item">
+            <span>Parking Area</span>
+            <span id="parking-area">-</span>
+        </div>
+        <div class="receipt-item">
+            <span>License Plate</span>
+            <span id="license-plate">-</span>
+        </div>
+        <div class="receipt-item">
+            <span>Parking Time</span>
+            <span id="parking-time">-</span>
+        </div>
+        <div class="receipt-item">
+            <span>Cost</span>
+            <span id="cost-amount">$0.00</span>
+        </div>
+
+        <div class="total">
+            Total: <span id="total-amount">$0.00</span>
+        </div>
+
+        <button id="payment-button" onclick="confirmPayment()">Pay Now</button>
+    </div>
+
+    <script>
+        // Get data from localStorage
+        const area = localStorage.getItem("parking-area") || "Not Set";
+        const plate = localStorage.getItem("lpnum") || "Not Set";
+        const time = localStorage.getItem("parking-time") || "Not Set";
+
+        // Set values
+        document.getElementById("parking-area").textContent = area;
+        document.getElementById("license-plate").textContent = plate;
+        document.getElementById("parking-time").textContent = time;
+
+        // Basic cost calculation
+        let cost = 0;
+        if (time.includes("Standard Hourly")) cost = 2.00;
+        else if (time.includes("Premium Hourly")) cost = 3.50;
+        else if (time.includes("Standard Daily")) cost = 15.00;
+        else if (time.includes("Premium Daily")) cost = 20.00;
+        else if (time.includes("Standard Weekly")) cost = 75.00;
+        else if (time.includes("Premium Weekly")) cost = 100.00;
+        else if (time.includes("Standard Monthly")) cost = 200.00;
+        else if (time.includes("Premium Monthly")) cost = 300.00;
+        else if (time.includes("Reserved Monthly")) cost = 250.00;
+        else if (time.includes("Event Parking")) cost = 10.00;
+
+        document.getElementById("cost-amount").textContent = `$${cost.toFixed(2)}`;
+        document.getElementById("total-amount").textContent = `$${cost.toFixed(2)}`;
+
+        function confirmPayment() {
+            alert("Payment Successful! Thank you for choosing ParKing.");
+            window.location.href = "reserved.html";
+        }
+    </script>
+
+    <footer>
+        <h4>Why Choose ParKing?</h4>
+        <p>ParKing helps you quickly locate parking spaces in your area. Whether you're at work, shopping, or at a concert, finding a spot has never been easier!</p>
+        <p>Our system provides real-time updates on available spaces, ensuring you never waste time circling the block again.</p></p>
+        
+        <h5>&copy; 2025 ParKing. All rights reserved.</h5>
+    </footer>
+
+</body>
+</html>
