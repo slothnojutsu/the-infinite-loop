@@ -20,7 +20,7 @@
                         <li><a href="zip.html">Availability</a></li>
                         <li><a href="profile.html">Profile</a></li>
                         <li><a href="login.html">Sign In</a></li>
-                        <li><a href="payment.html">Pay</a></li>
+                        <li><a href="#" onclick="handlePayClick()">Pay</a></li>
                     </ul>
                 </nav>
             </div>
@@ -33,6 +33,20 @@
             <img src="yay1.gif" alt="yayyyyy" width="100" height="150"><br>
             <a href="index.html" class="back-button">Back to Home</a>   
         </div>
+
+
+        <script>
+            function handlePayClick() {
+            
+                const userData = localStorage.getItem('email');
+        
+                if (userData) {
+                    window.location.href = 'payment.html';
+                } else {
+                    window.location.href = 'guest.html';
+                }
+            }
+        </script>
 
         <footer>
             <h4>Why Choose ParKing?</h4>
