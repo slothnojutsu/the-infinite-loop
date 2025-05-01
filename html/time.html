@@ -20,7 +20,7 @@
                         <li><a href="zip.html">Availability</a></li>
                         <li><a href="profile.html">Profile</a></li>
                         <li><a href="login.html">Sign In</a></li>
-                        <li><a href="payment.html">Pay</a></li>
+                        <li><a href="#" onclick="handlePayClick()">Pay</a></li>
                     </ul>
                 </nav>
             </div>
@@ -56,6 +56,17 @@
                 const formattedDate = today.toLocaleDateString(undefined, options);
                 localStorage.setItem('reservation-date', formattedDate);
                 window.location.href = "confirmation.html"; // redirect to confirmation page
+                }
+
+                function handlePayClick() {
+            
+                    const userData = localStorage.getItem('email');
+            
+                    if (userData) {
+                        window.location.href = 'payment.html';
+                    } else {
+                        window.location.href = 'guest.html';
+                    }
                 }
             </script>
             
