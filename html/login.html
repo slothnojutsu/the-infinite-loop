@@ -22,7 +22,7 @@
                     <li><a href="zip.html">Availability</a></li>
                     <li><a href="profile.html">Profile</a></li>
                     <li><a href="login.html">Sign In</a></li>
-                    <li><a href="payment.html">Pay</a></li>
+                    <li><a href="#" onclick="handlePayClick()">Pay</a></li>
                 </ul>
             </nav>
         </div>
@@ -72,6 +72,17 @@
             localStorage.setItem('email', email); // optional
             window.location.href = "profile.html";
         });
+
+        function handlePayClick() {
+            
+            const userData = localStorage.getItem('email');
+    
+            if (userData) {
+                window.location.href = 'payment.html';
+            } else {
+                window.location.href = 'guest.html';
+            }
+        }
     </script>
 
 </body>
