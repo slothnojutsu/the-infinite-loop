@@ -24,7 +24,10 @@
                     <li><a href="zip.html">Availability</a></li>
                     <li><a href="profile.html">Profile</a></li>
                     <li><a href="login.html">Sign In</a></li>
-                    <li><a href="payment.html">Pay</a></li>
+                    <!--changed the code here so it goes to onclick instead
+                    of immediately going to payment.html, checks whether
+                    the user is logged in or not-->
+                    <li><a href="#" onclick="handlePayClick()">Pay</a></li>
                 </ul>
             </nav>
         </div>
@@ -163,7 +166,18 @@
               document.getElementById('lotDetails').style.display = 'none';
               document.getElementById('container').scrollIntoView({ behavior: 'smooth' });
           }
-      </script>
+
+        function handlePayClick() {
+            
+            const userData = localStorage.getItem('email');
+    
+            if (userData) {
+                window.location.href = 'payment.html';
+            } else {
+                window.location.href = 'guest.html';
+            }
+        }
+    </script>
       
   </div>
    
@@ -222,3 +236,4 @@
     
 </body>
 </html>
+
