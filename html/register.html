@@ -22,9 +22,22 @@
           <li><a href="zip.html">Availability</a></li>
           <li><a href="profile.html">Profile</a></li>
           <li><a href="login.html">Sign In</a></li>
-          <li><a href="#" onclick="handlePayClick()">Pay</a></li>
-        </ul>
-      </nav>
+          <li><a href="#" onclick="goToPayment()">Pay</a></li>
+                </ul>
+            </nav>
+
+            <script>
+                function goToPayment() {
+                    /*check if the user is logged in or is a guest */
+                    const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+                    if (isLoggedIn) {
+                        window.location.href = "payment.html";
+                    } else {
+                        alert("You are continuing as a guest. To save your receipt and manage future reservations, please consider signing up!");
+                        window.location.href = "guest.html";
+                    }
+                }
+            </script>
     </div>
   </header>
 
