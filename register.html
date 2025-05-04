@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">      <!--mobile-friendly-->
+    <title>Register - ParKing</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}"><link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
+<body>
+   <!--added a header section to make it white and bolder-->
+   <header>
+        <h1>Welcome to ParKing
+            <img src="{{url_for('static', filename='crown2.png')}}" alt="Logo" class="header-image">
+        </h1>
+        <h2>Register Your Account</h2>
+
+        <div class="content-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="{{url_for('index')}}">Home</a></li>
+                    <li><a href="{{url_for('zip')}}">Availability</a></li>
+                    <li><a href="{{url_for('profile')}}">Profile</a></li>
+                    <li><a href="{{url_for('login')}}">Sign In</a></li>
+                    <li><a href="{{url_for('payment')}}">Pay</a></li>
+                    <li><a href="{{url_for('admin_login')}}">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="container">
+        <form action="/register" method="POST">
+            <label for="register-name"><b>Full Name</b></label>
+            <br><input type="text" id="register-name" name="name" required placeholder="Full Name"><br>
+                
+            <label for="register-email"><b>Email</b></label>
+            <br><input type="email" id="register-email" name="email" required placeholder="Email">
+            
+            <label for="register-password"><b>Password</b></label>
+            <br><input type="password" id="register-password" name="password" required placeholder="Password">
+                
+            <label for="register-confirm-password"><b>Confirm Password</b></label>
+            <br><input type="password" id="register-confirm-password" name="confirm-password" required placeholder="Confirm Password">
+                
+            <label for="register-phone-number"><b>Phone Number</b></label>
+            <br><input type="number" id="register-pnum" name="pnum" required placeholder="Phone Number">
+
+            <label for="register-license-plate"><b>License Plate</b></label>
+            <br><input type="text" id="register-lpnum" name="lpnum" required placeholder="License Plate Number">
+
+            <button type="submit">Sign up</button>
+        </form>
+            
+            <!--added script so it saves the info put in
+            from here to the profile page when the button is clicked
+            It's just the name and email-->
+        <script> 
+            const form = document.getElementById('form');
+            const fullName = document.getElementById('register-name');
+            const email = document.getElementById('register-email');
+            const pnum = document.getElementById('register-pnum');
+            const lpnum = document.getElementById('register-lpnum');
+
+            // Redirect if already logged in
+            if (localStorage.getItem('full-name') && localStorage.getItem('email')) {
+                alert("You are already logged in.");
+                window.location.href = "profile.html";
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                localStorage.setItem('full-name', fullName.value);
+                localStorage.setItem('email', email.value);
+                localStorage.setItem('pnum', pnum.value);
+                localStorage.setItem('lpnum', lpnum.value);
+
+               window.location.href = "profile.html";
+            });
+        </script>
+        
+        <h2 id="alr">Already have an account? <a href="{{url_for('login')}}">Sign in</a></h2>
+    </div>   
+        <!--marquee is what makes the car move across the screen-->
+        <marquee width="100%" direction="left" height="200px">
+        <img src="AEFR.png" alt="vroom" width="300" height="200">
+        </marquee>
+
+        <footer>
+            <h4>Why Choose ParKing?</h4>
+            <p>ParKing helps you quickly locate parking spaces in your area. Whether you're at work, shopping, or at a concert, finding a spot has never been easier!</p>
+            <p>Our system provides real-time updates on available spaces, ensuring you never waste time circling the block again.</p></p>
+            
+            <h5>&copy; 2025 ParKing. All rights reserved.</h5>
+        </footer>
+</body>
+</html>
