@@ -1,0 +1,397 @@
+/* Basic Layout */
+html, body {
+    height: 100%;  /* Ensure the full height is used */
+    margin: 0;     /* Remove default margin */
+    padding: 0;    /* Remove default padding */
+    display: flex;
+    flex-direction: column;  /* Stack elements vertically */
+}
+
+/* Container to hold all content */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    /*height: 100%;  /* Make it take up all available space */
+    flex: 1;
+    padding-block: 1rem;
+}
+
+/* ************************* */
+/* *********BODY************ */
+/* ************************* */
+body {
+    background: linear-gradient(to right, #e0a3c2, #edc8da); /* Gradient background */
+    color: #333;
+    text-align: center;
+    padding-bottom: 50px;  /* Add space at the bottom to avoid overlap with footer */
+    display: flex;            /* Use Flexbox */
+    align-items: center;      /* Center vertically */
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ************************* */
+/* *********HEADER********** */
+/* ************************* */
+header {
+    color: black;
+    text-align: center;
+    width: 100%; /* Ensure header spans full width */
+}
+
+header h1 {
+    font-size: 36px;
+    font-family: cursive;
+    margin-bottom: 10px;      /* Remove any unnecessary bottom margin */
+    margin-top: 10px;
+}
+
+.header-image {
+    width: 70px;  /* Adjust the width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+header h2 {
+    font-family: cursive;
+    font-size: 22px;
+    margin-bottom: 5px;      /* Remove any unnecessary bottom margin */
+}
+
+header p {
+    font-family: cursive;
+    margin-top: 10px;      /* Remove any unnecessary top margin */
+    margin-bottom: 5px;
+}
+
+ 
+#rates {
+    text-align: left;
+    background: white;  /* White background */
+    padding: 20px;      /* Add space inside the box */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for a lifted effect */
+    max-width: 600px;   /* Limit width to keep it readable */
+    margin: 20px auto;  /* Center it on the page */
+    border: 1px solid #ccc; /* Light gray border */
+}
+#rates h2{
+    /*text-decoration-style: solid;  /* Solid line (other options: dotted, dashed) */
+    text-align: center;
+    /*text-decoration: underline;*/
+    text-decoration-color: black;
+}
+
+/* Input Field */
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 300px;
+}
+
+/* ************************* */
+/* *********BUTTON********** */
+/* ************************* */
+button {
+    font-family: 'Lora', sans-serif;
+    padding: 12px 30px;
+    margin-bottom: 10px;   /* Add space between buttons */
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #db6eac; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for button */
+button:hover {
+    background-color: #25c3c3; /* Dark blue when hovered */
+    transform: scale(1.05); /* Slightly grow the button */
+}
+
+/* Results Section Styling */
+#results {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+/* ************************* */
+/* *********ZIP CODE******** */
+/* ************************* */
+.zip-container {
+    /*position: absolute;
+    top: 30%;     /* Adjust the vertical position */
+    right: 5%;    /* Align to the right side */
+    text-align: left;
+}
+
+#zipCode {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    max-width: 250px;
+}
+
+/* ************************** */
+/* *********NAV BAR********** */
+/* ************************** */
+nav {
+    background: #333;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Adjusting padding and margins for the list */
+ul {
+        /* bullet points
+        /*padding-left: 20px; /* Space between the left edge and the bullet point
+        list-style-position: inside; /* Ensures the bullet points are inside the padding area*/
+
+        /* no bullet points */
+        list-style-type: none;
+        padding-left: 0; /* Remove padding to align items properly */
+    }
+    
+    li {
+
+        /* bullet points
+        margin-left: 0; /* Remove any extra space on the left side of the list items
+        padding-left: 10px; /* Add some space between the bullet and the text */
+
+        /* no bullet points */
+        padding-left: 10px; /* Add some space between the edge and the text */
+    }
+
+
+/* Section Styles */
+#content, #profile {
+    padding: 20px;
+}
+
+/* ************************* */
+/* **********BOXES********** */
+/* ************************* */
+#container {
+    text-align: center;
+    background: white;  /* White background */
+    padding: 20px;      /* Add space inside the box */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for a lifted effect */
+    max-width: 600px;   /* Limit width to keep it readable */
+    margin: 20px auto;  /* Center it on the page */
+    border: 1px solid #ccc; /* Light gray border */
+}
+
+#container h3 {
+    text-align: center;  /* Center the section titles */
+    /*text-decoration: underline;*/
+    text-decoration-color: black;
+    /*font-family: cursive;*/
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#container p, ul{
+    text-align: left;
+    font-size: 18px;
+}
+
+#confettie {
+    text-align: center;
+    background-image: url('confettie.gif');
+    background-size: 50%;
+    padding: 20px;      /* Add space inside the box */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for a lifted effect */
+    max-width: 600px;   /* Limit width to keep it readable */
+    margin: 20px auto;  /* Center it on the page */
+    border: 1px solid #ccc; /* Light gray border */
+}
+
+#confettie p{
+    font-size: 20px;
+}
+
+/* *********Profile********** */
+#logout {           /*have logout button in the center instead of left */
+    text-align: center;
+    margin-bottom: 10px; 
+}
+
+/* *********Register********** */
+form label {
+    font-size: 18px;
+}
+
+form input {
+    font-size: 15px;
+}
+
+#alr {
+    text-align: center;
+    font-size: 16px;
+}
+
+span.edit-icon:hover {
+    opacity: 0.6;
+}
+/* ******time drop down******* */
+select {
+    font-size: 15px;       /* makes text bigger */
+    padding: 10px;         /* increases spacing inside */
+    height: 45px;          /* optional: force taller dropdown */
+    width: 100%;           /* full width */
+    border-radius: 6px;    /* rounded corners */
+}
+
+/*
+.gif-box {
+    position: relative;
+    display: inline-block;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  .gif-box .gif {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+  }
+  
+.text-overlay {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;         /* make it as wide as the GIF *//*
+    height: 100%;        /* make it as tall as the GIF *//*
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    color: white;
+    font-family: 'Lora', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.0); /* transparent *//*
+    text-align: center;
+    box-sizing: border-box;
+}
+  
+.text-overlay p {
+    font-size: 20px;
+}
+
+.text-overlay a {
+    font-size: 18px;
+    justify-content: bottom;
+}
+
+
+/* ************************* */
+/* *********Payment********* */
+/* ************************* */
+
+#receipt-container {
+    background: #fff;
+    padding: 30px;
+    max-width: 400px;
+    margin: auto;
+    border: 1px dashed #aaa;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+#receipt {
+    text-align: center;
+    font-family: cursive;
+}
+.receipt-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 16px;
+}
+.total {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+    border-top: 1px dashed #aaa;
+    padding-top: 10px;
+}
+#payment-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#payment-button:hover {
+    background-color: #5cebeb;
+}
+
+/* ************************* */
+/* *********FOOTER********** */
+/* ************************* */
+footer {
+    font-family: 'Lora', sans-serif;
+    text-align: left; /* Align text to the left in the footer */
+    padding-left: 20px; /* Add some padding for better spacing */
+    background: linear-gradient(to right, #423f3f, #6c6b6b);
+    color: white;
+    position: relative; /* Keeps the footer positioned in the normal flow of the document */
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+    
+footer h4 {
+    text-align: left;   /* Align the heading to the left */
+    margin-top: 10px;      /* Remove any unnecessary top margin */
+    margin-left: 20px; /* Adds space before the text in the footer */
+    font-size: 18px;    /* make the text smaller or larger */
+    padding-top: 1rem;
+    
+    /* margin-bottom: 5px; */
+}
+
+footer p {
+    font-size: 14px; /* make the text smaller or larger */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 20px; /* Adds space before the text in the footer */
+}
+
+footer h5 {
+    margin-left: 20px; /* Adds space before the text in the footer */
+}
+
+
+/* margin-top/bottom: to bring the lines closer*/

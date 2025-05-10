@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">      <!--mobile-friendly-->
+    <title>ParKing👑 - Find Your Parking Spot</title>     <!--shown on brower tab-->
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">           <!--to link to css file for styling-->
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to ParKing
+            <img src="{{url_for('static', filename='crown2.png')}}" alt="Logo" class="header-image">
+        </h1>
+
+        <p>Your ultimate solution for finding parking spots nearby!</p>
+        <div class="content-wrapper">
+            <nav>
+                <ul>
+                    <li><a href="{{url_for('index')}}">Home</a></li>
+                    <li><a href="{{url_for('zip')}}">Availability</a></li>
+                    <li><a href="{{url_for('profile')}}">Profile</a></li>
+                    <li><a href="{{url_for('login')}}">Sign In</a></li> <!-- i changed this because the button says sign up-->
+                    <li><a href="{{url_for('payment')}}">Pay</a></li>
+                    <li><a href="{{url_for('admin_login')}}">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <h2>Car Plate Records</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Image Path</th>
+        <th>License Plate</th>
+        <th>Entry Time</th>
+        <th>Exit Time</th>
+    </tr>
+    {% for row in license_details %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="5">No records found.</td></tr>
+    {% endfor %}
+</table>
+
+    </main>
+    
+
+
+    <footer>
+        <h4>Why Choose ParKing?</h4>
+        <p>ParKing helps you quickly locate parking spaces in your area. Whether you're at work, shopping, or at a concert, finding a spot has never been easier!</p>
+        <p>Our system provides real-time updates on available spaces, ensuring you never waste time circling the block again.</p></p>
+        
+        <h5>&copy; 2025 ParKing. All rights reserved.</h5>
+    </footer>
+
+</body>
+</html>
